@@ -1,0 +1,68 @@
+<!Doctype html>
+<html lang="en-US">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div class="container">
+        <H1>Perfect Number Calculator</H1>
+        <h3>Enter a number to get all perfect numbers less than the number</h3>
+        <h5>Numbers greater than 5 digits make take a moment</h5>
+        <input type="text" id="testnumber">
+        <input type="button" onclick="TestNumbers(document.getElementById('testnumber').value)" value="Submit">
+        <br/>
+        <br/>
+        <span id="result"></span>
+    </div>
+    <script>
+
+        function TestNumbers(maxTestValue) {
+            console.time('F1');
+            var ListOfPerfects = "Perfect Numbers between 1 and " + maxTestValue + ":";
+            // Keep track of how many perfects have been stored for text formatting
+            var currentPerfectCount = 0;
+            for (x = 1; x <= maxTestValue; x++) {
+                var factors = findfactors(x);
+                var isPerfect = checkPerfect(x, factors);
+                if (isPerfect == true && currentPerfectCount == 0){
+                    ListOfPerfects += " " + x;
+                    currentPerfectCount++;
+                }               
+                else if (isPerfect == true && currentPerfectCount > 0){                
+                ListOfPerfects += ", " + x;
+            }
+            }
+            document.getElementById('result').innerHTML = ListOfPerfects;
+            console.timeEnd('F1');
+        }
+
+
+        function findfactors(number) {
+            var factors = [];
+            for (n = 1; n <= number / 2; n++) {
+                if (number % n == 0) {factors.push(n);
+                }
+            }
+            return factors;
+        }
+
+
+        function checkPerfect(potentialPerfect, factors) {
+            var sumTotal = 0;
+            for (b = 0; b < factors.length; b++) {
+                sumTotal += factors[b];
+            };
+            if (potentialPerfect == sumTotal) return true;
+            else return false;
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

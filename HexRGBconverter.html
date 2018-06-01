@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<body>
+    <h3>Convert a hex value to an RGB Value</h3>
+    <input type="text" id="hexInput">
+    <input type="button" value="Click to Convert" onclick="convertToRGB(this)">
+    <div id="result"></div>
+    <script>
+        function convertToRGB(button) {
+            var hexArray = ["a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];            
+            var hexValue = document.getElementById('hexInput').value;
+            //Cleanup the hex string in case of a leading #
+            hexValue = hexValue.replace("#", "");
+            //Check if this is a potential hex value
+            var isAHex = true;
+            var result = document.getElementById('result');
+            if (hexValue.length == 6 || hexValue.length == 8) {
+                for (var i = 0; i < hexValue.length; i++) {
+                    if (!hexArray.includes(hexValue[i])) isAHex = false;
+                    console.log(isAHex);
+                }
+            }
+            else{
+                result.innerHTML = ("This is not a hex value, Please enter 6 or 8 character hex value");
+                return;
+            }
+            var red = parseInt((hexValue.substr(0,2)),16);
+            var green = parseInt((hexValue.substr(2,2)),16); 
+            var blue = parseInt((hexValue.substr(4,2)),16);
+            var opacity;
+            if(hexValue.length == 6){
+            var resultText = "<Table><th>Red</th><th>Green</th><th>Blue</th> <tr><td>" + red + 
+                            "</td><td>," + green +
+                            "</td><td>," + blue +
+                            "</td></tr></table>";
+            button.style.backgroundColor = "rgb(" + red + "," + green + "," + blue + ")";
+                            
+                            }
+            else{
+                opacity = parseInt((hexValue.substr(6,2)),16);
+                var resultText = "<Table><th>Red</th><th>Green</th><th>Blue</th> <th>Opacity</th><tr><td>" + red + 
+                            "</td><td>," + green +
+                            "</td><td>," + blue +
+                            "</td><td>," + opacity +
+                            "</td></tr></table>";
+            button.style.backgroundColor = "rgba(" + red + "," + green + "," + blue + "," + opacity + ")";
+                            
+            }
+            
+            result.innerHTML = resultText;
+        }
+    </script>
+</body>
+
+</html>

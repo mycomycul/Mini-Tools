@@ -1,0 +1,31 @@
+<!-- Calculate all of the squares of a number that are less than a second number -->
+
+<html>
+
+<body>
+    <input type="text" id="squareme" placeholder="Number to Square">
+    <input type="text" id="upperBound" placeholder="Don't go over">
+    <input type="button" onclick="squareMe()" value="submit"> </br>
+    <div id="result"></div>
+    <script>
+
+        function squareMe() {
+            var upper = parseInt(document.getElementById('upperBound').value);
+            var square = document.getElementById('squareme');
+            var result = "";
+            var squared = 0;
+            for (squared = parseInt(square.value); Math.pow(squared, 2) <= upper;) {
+                squared = Math.pow(squared, 2)
+                result += (squared + ",");
+            }
+            document.getElementById('result').innerHTML = result;
+        }
+
+    </script>
+
+
+
+
+</body>
+
+</html>

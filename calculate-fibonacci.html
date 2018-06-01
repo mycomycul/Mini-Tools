@@ -1,0 +1,39 @@
+<!-- Calculate the fibonacci sequence up to a number using 2 methods -->
+<!doctype html>
+<html lang="en">
+
+<body>
+        Input a number to Calculate the fibonacci sequence up to that number <br/>
+    <input type="text" id="testnumber">
+    <input type="button" onclick="Fibonacci(document.getElementById('testnumber').value)" value="Submit">
+    </br>
+    <span id="result"></span>
+</br>
+    <span id="result2"></span>
+    
+    <script>
+        function Fibonacci(MaxNumber){
+            //Method 1
+            var numberSet = [0, 1];
+            var lastNumber;
+            var lastNumberTwo;
+            for(var i = 2; ((numberSet[i-2]+numberSet[i-1]) <= MaxNumber); i++){
+                lastNumber = numberSet[i-1];
+                lastNumberTwo = numberSet[i-2];
+                numberSet[i] = lastNumber + lastNumberTwo;
+            }
+            document.getElementById('result').innerHTML = numberSet.toString();
+            //Method 2
+            var numberSet2 = [0,1]
+            for(var i = 2; ((numberSet[i-2]+numberSet[i-1]) <= MaxNumber); i++){
+                numberSet2[i] = numberSet2[i-1] + numberSet2[i-2];
+                console.log(numberSet2[i])
+            }
+            document.getElementById('result2').innerHTML = numberSet2.toString();
+            
+
+        }
+    </script>
+</body>
+
+</html>

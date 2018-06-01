@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+
+    <style>
+        .colorBox {
+            width: 100px;
+            height: 100px;
+            background: rgb(125, 125, 125);
+            margin: 10px auto;
+        }
+
+        div {
+            display: block;
+            margin: auto;
+            width: 50%;
+        }
+    </style>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+
+    <div>
+        <h3 align="center">Select a box and adjust the sliders to change the color</h3>
+        <div>
+            <div id="box1" class="colorBox" onclick="selectBox(this.id)"></div>
+            <div id="box2" class="colorBox" onclick="selectBox(this.id)"></div>
+            <div id="box3" class="colorBox" onclick="selectBox(this.id)"></div>
+            <div id="box4" class="colorBox" onclick="selectBox(this.id)"></div>
+        </div>
+
+
+        <div style="width:180px">
+            <input class="0" type="range" max="255" min="0" id="redSlider" onchange="colorChange(this.getAttribute('class'), this.value)">
+            <input class="1" type="range" max="255" min="0" id="greenSlider" onchange="colorChange(this.getAttribute('class'), this.value)">
+            <input class="2" type="range" max="255" min="0" id="greenSlider" onchange="colorChange(this.getAttribute('class'), this.value)">
+        </div>
+
+    </div>
+    <script>
+        //Store input range values as rgb color values
+        //Set Defaults
+        var colorArray = [125, 125, 125];
+        var selectedBox = "box1";
+
+        var inputRed = document.getElementById('0').value;
+        var inputGreen = document.getElementById('1').value;
+        var inputBlue = document.getElementById('2').value;
+
+        //Store value of and input range slider that is changed.
+        function colorChange(colorArrayPosition, colorArrayValue) {
+            colorArray[colorArrayPosition] = colorArrayValue;
+            setColor();
+        }
+        //store clicked box
+        function selectBox(boxNum) {
+            selectedBox = boxNum;
+            setColor();
+        }
+        //format array values as a css rgb color value and set to selected box's style
+        function setColor() {
+            var rgbString = "rgb(" + colorArray.toString() + ")";
+            document.getElementById(selectedBox).style.background = rgbString;
+        }
+
+
+
+    </script>
+
+
+</body>
+
+
+
+</html>

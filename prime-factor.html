@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <H1>Find the Prime Factors of any Number</H1>
+    <h3>All decimal values will be truncated</h3>
+    <input type="text" id="testnumber">
+    <input type="button" onclick="factor(document.getElementById('testnumber').value)" value="Submit">
+    </br>
+    <span id="result"></span>
+    <script>
+        function factor(number) {
+            if (validateInput(number)){
+                var resultText = "Prime Factors are: ";
+            //Find Factors
+            for (var x = 2; x < number; x++) {
+                var notAPrimeFactor = false;
+                if (number % x == 0) {
+                    notAPrimeFactor = checkforprime(x);
+
+                    //If it is a prime factor
+                    if (notAPrimeFactor == false)
+                        resultText += x + ",";
+                }
+            }
+
+            resultText = resultText.slice(0, -1);
+            document.getElementById('result').innerHTML = resultText;
+        }
+        else return;
+        }
+        function validateInput(number) {
+            number = parseInt(number)
+            if (isNaN(number)) {
+                document.getElementById('result').innerHTML = "Please enter an integer";
+                return false;
+            }
+            else return true;
+        }
+        function checkforprime(int) {
+
+            for (var y = 2; y < int; y++) {
+                if (int % y == 0) {
+                    return true;
+                }
+
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>

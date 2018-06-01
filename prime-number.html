@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+    <H1>Input a number to see all prime numbers up to that number</H1>
+    <input type="text" id="testnumber">
+    <input type="button" onclick="TestNumbers(document.getElementById('testnumber').value)" value="Submit">
+    <div style="max-width: 600px;word-break:break-word;">
+    <span id="result" style="max-width: 600px;"></span>
+    </div>
+    <script>
+
+        function TestNumbers(maxTestValue) {
+            if (validateInput(maxTestValue)){
+            var primeList = [];
+            for(x=2; x <= maxTestValue; x++){
+                var notAPrime = CheckIfPrime(x);
+                if (notAPrime == false) {
+                    //console.log(i);
+                    primeList.push(x);}
+            }
+            var resultText = "<strong>Prime Numbers up to " + maxTestValue + ":</strong></br>";
+            primeList.forEach(function(value){resultText += value +", ";})
+            document.getElementById('result').innerHTML = resultText.slice(0,-2);
+        }
+        else return;
+        }
+        function CheckIfPrime(numToCheck) {
+            var notAPrime = false;
+            for (i = 2; (i <= numToCheck/2 && notAPrime != true); i++) { 
+                if (numToCheck % i == 0) {
+                    notAPrime = true;
+                }               
+            }
+            return notAPrime
+        }
+        function validateInput(number) {
+            number = parseInt(number)
+            if (isNaN(number)) {
+                document.getElementById('result').innerHTML = "Please enter an integer";
+                return false;
+            }
+            else return true;
+        }
+
+    </script>
+</body>
+
+</html>
