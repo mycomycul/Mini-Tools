@@ -1,11 +1,15 @@
 import queue as q
 class BinarySearchTree:
+    '''Searchable binary tree class'''
     def __init__(self,value):
         self.value = value
         self.left_child = None
         self.right_child = None
 
+
     def insert(self,value):
+        '''Insert in order such that all values ot left are less than current node and
+        all values to right are greater than current node'''
         if value <= self.value and self.left_child:
             self.left_child.insert(value)
         elif value <= self.value:
@@ -16,6 +20,7 @@ class BinarySearchTree:
             self.right_child = BinarySearchTree(value)
 
     def search(self,value):
+        '''Find if a value exists in teh current Binary Search Tree'''
         if value < self.value and self.left_child:
             return self.left_child.search(value)
         if value > self.value and self.right_child:
@@ -133,9 +138,8 @@ print(" ")
 a_node.breadth_first()
 
 
-
+#Testing Binary Search Tree
 newTree = BinarySearchTree(10)
-
 newTree.insert(1)
 newTree.insert(12)
 newTree.insert(21)
