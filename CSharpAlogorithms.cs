@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PracticeConsole
+namespace Algorithms
 {
     class Problemsamples
     {
@@ -73,6 +73,29 @@ namespace PracticeConsole
             }
 
             return Final;
+        }
+
+        public static int[] InsertionSort(int[] array)
+        {
+            for (int i = 1; i < array.Length; i++)
+            {
+                int checkAgainstIndex;
+                int currentValue = array[i];
+
+                //Loop through each elements preceeding the current value
+                for (checkAgainstIndex = i-1; checkAgainstIndex >= 0 ; checkAgainstIndex--)
+                {
+                    //If the current value is greater than the value being checked, you're done looping
+                    if (array[checkAgainstIndex] <= currentValue)
+                        break;
+                    //else, increase the index of the value being checked to make space for the current value
+                    array[checkAgainstIndex + 1] = array[checkAgainstIndex];
+                }
+                //Once we've found where all previous values are less than the current value, insert
+                array[checkAgainstIndex + 1] = currentValue;
+            }
+
+            return array;
         }
     }
 }
