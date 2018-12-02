@@ -9,17 +9,17 @@ class BinarySearchTree:
         if value <= self.value and self.left_child:
             self.left_child.insert(value)
         elif value <= self.value:
-            self.left_child = BinaryTree(value)
+            self.left_child = BinarySearchTree(value)
         elif value > self.value and self.right_child:
             self.right_child.insert(value)
         else:
-            self.right_child = BinaryTree(value)
+            self.right_child = BinarySearchTree(value)
 
     def search(self,value):
         if value < self.value and self.left_child:
-            return self.left_child.find_node(value)
+            return self.left_child.search(value)
         if value > self.value and self.right_child:
-            return self.right_child.find_node(value)
+            return self.right_child.search(value)
             
         return value == self.value
 
@@ -30,7 +30,7 @@ class BinaryTree:
         self.left_child = None
         self.right_child = None
 
-    def insert_ordered_node(self,value):
+    def insert(self,value):
         ''' Insert method for maintaining an ordered binary tree
          unnecessarily using left and right insert methods '''
         if self.value > value:
@@ -131,3 +131,24 @@ print(" ")
 a_node.pre_order()
 print(" ")
 a_node.breadth_first()
+
+
+
+newTree = BinarySearchTree(10)
+
+newTree.insert(1)
+newTree.insert(12)
+newTree.insert(21)
+newTree.insert(14)
+newTree.insert(15)
+newTree.insert(15)
+newTree.insert(16)
+newTree.insert(19)
+newTree.insert(441)
+newTree.insert(111)
+newTree.insert(13)
+
+print(newTree.search(1))
+print(newTree.search(15))
+print(newTree.search(441))
+print(newTree.search(3))
