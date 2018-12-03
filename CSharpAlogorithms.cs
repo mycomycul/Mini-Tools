@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Algorithms
 {
-    class Problemsamples
+    class ProblemSamples
     {
-        public char FindCharacterOfLongestConsecutiveRepeatingCharacter(string s)
+        public static char FindCharacterOfLongestConsecutiveRepeatingCharacter(string s)
         {
             //Setup initial conditions
             //What has been found
@@ -41,7 +41,9 @@ namespace Algorithms
             //REturn the first character of the first, longest consecutive string
             return s[longestStringStart];
         }
-        public int[] MergeSortTwoSortedIntegerArrays(int[] A = null, int[] B = null)
+
+
+        public static int[] MergeSortTwoSortedIntegerArrays(int[] A = null, int[] B = null)
         {
 
             int currentA = 0;
@@ -96,6 +98,53 @@ namespace Algorithms
             }
 
             return array;
+        }
+        /// <summary>
+        /// Check if any two values in an array, if one is subtracted from the other, 
+        /// the difference equals the queried value
+        /// </summary>
+        public static int[] checkForDifferenceCompliment(int query, int[] array)
+        {
+            //Iterate through each element
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                //Iterate through each element after the first selected element
+                for (int j = i + 1; j < array.Length; j++)
+                {
+                    //Check Condition
+                    if (array[j] - array[i] == query || array[i] - array[j] == query)
+                    {
+                        //Return values if condition met
+                        return new int[] { array[i], array[j] };
+                    }
+                }
+            }
+
+            return new int[] { };
+        }
+
+
+        public static int BinarySearch(int[] array, int searchValue)
+        {
+            int max = array.Length - 1;
+            int min = 0;
+
+            while(max >= min)
+            {
+                int guess = (max + min) / 2;
+                if (array[guess] == searchValue)
+                    return guess;
+                else if (array[guess] < searchValue)
+                {
+                    min = ++guess;
+                }
+                else
+                {
+                    max = --guess;
+                }             
+            }
+
+            return -1;
         }
     }
 }
