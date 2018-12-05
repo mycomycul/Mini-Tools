@@ -123,7 +123,14 @@ namespace Algorithms
             return new int[] { };
         }
 
-
+        /// <summary>
+        /// Looks for a value in a sorted array by selecting a middle index and checking it against
+        /// the searchValue. If the searchValue is less than the guesse value, the top half of the array is
+        /// eliminated
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="searchValue"></param>
+        /// <returns></returns>
         public static int BinarySearch(int[] array, int searchValue)
         {
             int max = array.Length - 1;
@@ -145,6 +152,28 @@ namespace Algorithms
             }
 
             return -1;
+        }
+
+        /// <summary>
+        /// Takes an array and target anc find if any of the values can be subtracted from eachother to 
+        /// equal the target value
+        /// </summary>
+        /// <param name="arrayToCheck"></param>
+        /// <param name="targetSum"></param>
+        /// <returns></returns>
+        public static int[] SumOfTarget(int[] arrayToCheck, int targetSum)
+        {
+            HashSet<int> hashedArray = new HashSet<int>(arrayToCheck);
+
+            foreach (int num in hashedArray)
+            {
+                if (hashedArray.Contains(num - targetSum))
+                {
+                    return new int[] { num, num - targetSum };
+                }
+
+            }
+            return new int[] { -1, -1 };
         }
     }
 }
