@@ -175,5 +175,33 @@ namespace Algorithms
             }
             return new int[] { -1, -1 };
         }
+
+        /// <summary>
+        /// Returns a string containing all characters that were not repeated in a received string
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        static string findSingleElements(string s)
+        {
+            var nonDC = "";
+
+            //Create a dictionary for storing all values in the string and the count of occurences.
+            Dictionary<char, int> d = new Dictionary<char, int>();
+            foreach (char c in s)
+            {
+                if (!d.ContainsKey(c))
+                    d.Add(c, 1);
+                else
+                    d[c] += 1;
+            }
+            //Check which elements have a count of 1
+            foreach (var item in d)
+            {
+                if (item.Value == 1)
+                    nonDC = nonDC + item.Key + ",";
+            }
+
+            return nonDC;
+        }
     }
 }
