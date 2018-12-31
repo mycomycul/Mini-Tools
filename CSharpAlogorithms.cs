@@ -203,5 +203,54 @@ namespace Algorithms
 
             return nonDC;
         }
+        
+        /// <summary>
+        /// Implements the Hashset to isolate values and return an array with no duplicates
+        /// </summary>
+        /// <param name="initialArray"></param>
+        /// <returns></returns>
+        static int[] RemoveArrayDuplicateUsingHashset(int[] initialArray)
+        {
+            HashSet<int> h = new HashSet<int>();
+            for (int i = 0; i < initialArray.Length; i++)
+            {
+                if (!h.Contains(initialArray[i]))
+                {
+                    h.Add(initialArray[i]);
+                }
+            }
+            int[] newArray = new int[h.Count]; 
+                h.CopyTo(newArray);
+            return newArray;
+        }
+        /// <summary>
+        /// Implements temporary arrays to isolate values and return an array with no duplicates
+        /// </summary>
+        /// <param name="initialArray"></param>
+        /// <returns></returns>
+        static int[] RemoveArrayDuplicatesUsingArrays(int[] initialArray)
+        {
+            Array.Sort(initialArray);
+            int[] tempArray = new int[initialArray.Length];
+            int j = 0;
+
+            //Move forward through the array until the last occurance on an integer and add that to our temp array
+            for (int i = 0; i < initialArray.Length-1; i++)
+            {
+                //If the next integer is a new integer, save the current integer to our tempArray
+                if (initialArray[i] != initialArray[i + 1])
+                    tempArray[j++] = initialArray[i];             
+            }
+            //Add last integer
+            tempArray[j] = initialArray[initialArray.Length - 1];
+            //Clone temp array to array to return of correct size
+            int[] returnArray = new int[j+1];
+            for (int i = 0; i <= j; i++)
+            {
+                returnArray[i] = tempArray[i];
+            }
+
+            return returnArray;
+        }
     }
 }
