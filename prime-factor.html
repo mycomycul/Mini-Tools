@@ -10,29 +10,44 @@
     <h3>All decimal values will be truncated</h3>
     <input type="text" id="testnumber">
     <input type="button" onclick="factor(document.getElementById('testnumber').value)" value="Submit">
-    </br>
+    <br />
     <span id="result"></span>
     <script>
         function factor(number) {
-            if (validateInput(number)){
+            if (validateInput(number)) {
                 var resultText = "Prime Factors are: ";
-            //Find Factors
-            for (var x = 2; x < number; x++) {
-                var notAPrimeFactor = false;
-                if (number % x == 0) {
-                    notAPrimeFactor = checkforprime(x);
+                //Find Factors
+                for (var x = 2; x <= number / 2; x += 1) {
+                    if (x % 2 != 0) {
+                        var prime = false;
+                        if (number % x == 0) {
+                            prime = checkforprime(x);
 
-                    //If it is a prime factor
-                    if (notAPrimeFactor == false)
-                        resultText += x + ",";
+                            //If it is a prime factor
+                            if (prime == true)
+                                resultText += x + ",";
+                        }
+                    }
+                }
+
+                resultText = resultText.slice(0, -1);
+                document.getElementById('result').innerHTML = resultText;
+            }
+            else return;
+        }
+
+        function checkforprime(int) {
+            for (var y = 2; y <= int / 2; y++) {
+                if (int % y == 0) {
+                    return false;
                 }
             }
+            //no factor of the number was found so it's prime
+            document.getElementById('result').innerHTML = "Current Number: " + int;
+            return true;
+        }
 
-            resultText = resultText.slice(0, -1);
-            document.getElementById('result').innerHTML = resultText;
-        }
-        else return;
-        }
+
         function validateInput(number) {
             number = parseInt(number)
             if (isNaN(number)) {
@@ -40,16 +55,6 @@
                 return false;
             }
             else return true;
-        }
-        function checkforprime(int) {
-
-            for (var y = 2; y < int; y++) {
-                if (int % y == 0) {
-                    return true;
-                }
-
-            }
-            return false;
         }
     </script>
 </body>
