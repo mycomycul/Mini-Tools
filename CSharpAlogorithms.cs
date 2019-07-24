@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Algorithms
-{
-    class ProblemSamples
-    {
-        public static char FindCharacterOfLongestConsecutiveRepeatingCharacter(string s)
-        {
+namespace Algorithms {
+    class ProblemSamples {
+        public static char FindCharacterOfLongestConsecutiveRepeatingCharacter (string s) {
             //Setup initial conditions
             //What has been found
             int longestStringCount = 1;
@@ -17,19 +14,15 @@ namespace Algorithms
             //What we're currently checking
             int currentStringCount = 1;
             int currentStringStart = 0;
-            for (int i = 1; i < s.Length; i++)
-            {
+            for (int i = 1; i < s.Length; i++) {
                 //Check if the current character si the same the last
-                if (s[i] == s[i - 1])
-                {
+                if (s[i] == s[i - 1]) {
                     currentStringCount++;
                 }
                 //else new character
-                else
-                {
+                else {
                     //Check fi the alst series of characters was the longest encountered
-                    if (currentStringCount > longestStringCount)
-                    {
+                    if (currentStringCount > longestStringCount) {
                         longestStringCount = currentStringCount;
                         longestStringStart = currentStringStart;
                     }
@@ -42,33 +35,23 @@ namespace Algorithms
             return s[longestStringStart];
         }
 
-
-        public static int[] MergeSortTwoSortedIntegerArrays(int[] A = null, int[] B = null)
-        {
+        public static int[] MergeSortTwoSortedIntegerArrays (int[] A = null, int[] B = null) {
 
             int currentA = 0;
             int currentB = 0;
 
             int[] Final = new int[A.Length + B.Length];
-            for (int i = 0; i < Final.Length; i++)
-            {
-                if (currentA == A.Length)
-                {
+            for (int i = 0; i < Final.Length; i++) {
+                if (currentA == A.Length) {
                     Final[i] = B[currentB];
                     currentB++;
-                }
-                else if (currentB == B.Length)
-                {
+                } else if (currentB == B.Length) {
                     Final[i] = A[currentA];
                     currentA++;
-                }
-                else if (A[currentA] < B[currentB])
-                {
+                } else if (A[currentA] < B[currentB]) {
                     Final[i] = A[currentA];
                     currentA++;
-                }
-                else
-                {
+                } else {
                     Final[i] = B[currentB];
                     currentB++;
                 }
@@ -77,16 +60,13 @@ namespace Algorithms
             return Final;
         }
 
-        public static int[] InsertionSort(int[] array)
-        {
-            for (int i = 1; i < array.Length; i++)
-            {
+        public static int[] InsertionSort (int[] array) {
+            for (int i = 1; i < array.Length; i++) {
                 int checkAgainstIndex;
                 int currentValue = array[i];
 
                 //Loop through each elements preceeding the current value
-                for (checkAgainstIndex = i-1; checkAgainstIndex >= 0 ; checkAgainstIndex--)
-                {
+                for (checkAgainstIndex = i - 1; checkAgainstIndex >= 0; checkAgainstIndex--) {
                     //If the current value is greater than the value being checked, you're done looping
                     if (array[checkAgainstIndex] <= currentValue)
                         break;
@@ -103,17 +83,13 @@ namespace Algorithms
         /// Check if any two values in an array, if one is subtracted from the other, 
         /// the difference equals the queried value
         /// </summary>
-        public static int[] checkForDifferenceCompliment(int query, int[] array)
-        {
+        public static int[] checkForDifferenceCompliment (int query, int[] array) {
             //Iterate through each element
-            for (int i = 0; i < array.Length - 1; i++)
-            {
+            for (int i = 0; i < array.Length - 1; i++) {
                 //Iterate through each element after the first selected element
-                for (int j = i + 1; j < array.Length; j++)
-                {
+                for (int j = i + 1; j < array.Length; j++) {
                     //Check Condition
-                    if (array[j] - array[i] == query || array[i] - array[j] == query)
-                    {
+                    if (array[j] - array[i] == query || array[i] - array[j] == query) {
                         //Return values if condition met
                         return new int[] { array[i], array[j] };
                     }
@@ -131,24 +107,19 @@ namespace Algorithms
         /// <param name="array"></param>
         /// <param name="searchValue"></param>
         /// <returns></returns>
-        public static int BinarySearch(int[] array, int searchValue)
-        {
+        public static int BinarySearch (int[] array, int searchValue) {
             int max = array.Length - 1;
             int min = 0;
 
-            while(max >= min)
-            {
+            while (max >= min) {
                 int guess = (max + min) / 2;
                 if (array[guess] == searchValue)
                     return guess;
-                else if (array[guess] < searchValue)
-                {
+                else if (array[guess] < searchValue) {
                     min = ++guess;
-                }
-                else
-                {
+                } else {
                     max = --guess;
-                }             
+                }
             }
 
             return -1;
@@ -161,19 +132,16 @@ namespace Algorithms
         /// <param name="arrayToCheck"></param>
         /// <param name="targetSum"></param>
         /// <returns></returns>
-        public static int[] SumOfTarget(int[] arrayToCheck, int targetSum)
-        {
-            HashSet<int> hashedArray = new HashSet<int>(arrayToCheck);
+        public static int[] SumOfTarget (int[] arrayToCheck, int targetSum) {
+            HashSet<int> hashedArray = new HashSet<int> (arrayToCheck);
 
-            foreach (int num in hashedArray)
-            {
-                if (hashedArray.Contains(num - targetSum))
-                {
+            foreach (int num in hashedArray) {
+                if (hashedArray.Contains (num - targetSum)) {
                     return new int[] { num, num - targetSum };
                 }
 
             }
-            return new int[] { -1, -1 };
+            return new int[] {-1, -1 };
         }
 
         /// <summary>
@@ -181,46 +149,40 @@ namespace Algorithms
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        static string findSingleElements(string s)
-        {
+        static string findSingleElements (string s) {
             var nonDC = "";
 
             //Create a dictionary for storing all values in the string and the count of occurences.
-            Dictionary<char, int> d = new Dictionary<char, int>();
-            foreach (char c in s)
-            {
-                if (!d.ContainsKey(c))
-                    d.Add(c, 1);
+            Dictionary<char, int> d = new Dictionary<char, int> ();
+            foreach (char c in s) {
+                if (!d.ContainsKey (c))
+                    d.Add (c, 1);
                 else
                     d[c] += 1;
             }
             //Check which elements have a count of 1
-            foreach (var item in d)
-            {
+            foreach (var item in d) {
                 if (item.Value == 1)
                     nonDC = nonDC + item.Key + ",";
             }
 
             return nonDC;
         }
-        
+
         /// <summary>
         /// Implements the Hashset to isolate values and return an array with no duplicates
         /// </summary>
         /// <param name="initialArray"></param>
         /// <returns></returns>
-        static int[] RemoveArrayDuplicateUsingHashset(int[] initialArray)
-        {
-            HashSet<int> h = new HashSet<int>();
-            for (int i = 0; i < initialArray.Length; i++)
-            {
-                if (!h.Contains(initialArray[i]))
-                {
-                    h.Add(initialArray[i]);
+        static int[] RemoveArrayDuplicateUsingHashset (int[] initialArray) {
+            HashSet<int> h = new HashSet<int> ();
+            for (int i = 0; i < initialArray.Length; i++) {
+                if (!h.Contains (initialArray[i])) {
+                    h.Add (initialArray[i]);
                 }
             }
-            int[] newArray = new int[h.Count]; 
-                h.CopyTo(newArray);
+            int[] newArray = new int[h.Count];
+            h.CopyTo (newArray);
             return newArray;
         }
         /// <summary>
@@ -228,29 +190,59 @@ namespace Algorithms
         /// </summary>
         /// <param name="initialArray"></param>
         /// <returns></returns>
-        static int[] RemoveArrayDuplicatesUsingArrays(int[] initialArray)
-        {
-            Array.Sort(initialArray);
+        static int[] RemoveArrayDuplicatesUsingArrays (int[] initialArray) {
+            Array.Sort (initialArray);
             int[] tempArray = new int[initialArray.Length];
             int j = 0;
 
             //Move forward through the array until the last occurance on an integer and add that to our temp array
-            for (int i = 0; i < initialArray.Length-1; i++)
-            {
+            for (int i = 0; i < initialArray.Length - 1; i++) {
                 //If the next integer is a new integer, save the current integer to our tempArray
                 if (initialArray[i] != initialArray[i + 1])
-                    tempArray[j++] = initialArray[i];             
+                    tempArray[j++] = initialArray[i];
             }
             //Add last integer
             tempArray[j] = initialArray[initialArray.Length - 1];
             //Clone temp array to array to return of correct size
-            int[] returnArray = new int[j+1];
-            for (int i = 0; i <= j; i++)
-            {
+            int[] returnArray = new int[j + 1];
+            for (int i = 0; i <= j; i++) {
                 returnArray[i] = tempArray[i];
             }
 
             return returnArray;
         }
+
+        public static char[] ReverseString (char[] s) {
+
+            for (var i = 0; i < s.Length / 2; i++) {
+                char currentLetter = s[i];
+                s[i] = s[s.Length - 1 - i];
+                s[s.Length - 1 - i] = currentLetter;
+            }
+
+            return s;
+        }
+
+        public static string ReverseEachWord (string s) {
+            string[] words = s.Split (' ');
+            StringBuilder sb = new StringBuilder ();
+            for (var i = 0; i < words.Length; i++) {
+                words[i] = new string (ReverseString (words[i].ToCharArray ()));
+                sb.Append (words[i]).Append (" ");
+            }
+            return sb.ToString ().Trim ();
+
+        }
+        public static string ReverseWordOrder (string s) {
+            string[] words = s.Split (' ');
+            StringBuilder sb = new StringBuilder ();
+            for (var i = words.Length - 1; i >= 0; i--) {
+
+                sb.Append (words[i]).Append (" ");
+            }
+            return sb.ToString ().Trim ();
+
+        }
+
     }
 }
